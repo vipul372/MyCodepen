@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
-import Editor from "./Editor"
-import "../styles/App.css"
-import useLocalStorage from "../hooks/useLocalStorage"
+import Editor from "./components/Editor"
+import "./styles/App.css"
+import useLocalStorage from "./hooks/useLocalStorage"
+import Nav from "./components/Nav"
 
 const App = () => {
   // without localStorage
@@ -13,7 +14,7 @@ const App = () => {
   const [html, setHtml] = useLocalStorage("html", "")
   const [css, setCss] = useLocalStorage("css", "")
   const [js, setJs] = useLocalStorage("js", "")
- 
+
   const [srcDoc, setSrcDoc] = useState("")
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const App = () => {
 
   return (
     <>
+      <Nav />
       <div className="pane top-pane">
         <Editor
           displayName="HTML"
@@ -55,7 +57,6 @@ const App = () => {
         <iframe
           srcDoc={srcDoc}
           title="Output"
-          sandbox="allow-script"
           frameBorder="0"
           width="100%"
           height="100%"
